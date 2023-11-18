@@ -2,4 +2,4 @@
 
 Business Card
 
-[Preview](https://pajce.com)
+[Preview](https://spajce.com)
