@@ -27,7 +27,8 @@
   --text-third: #cccccc;
   --text-cv: #82DC7D;
   background: url('../assets/images/spajce-bg.jpg') center/cover fixed;
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 input[type="checkbox"] {
