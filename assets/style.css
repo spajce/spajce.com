@@ -18,17 +18,19 @@
 }
 
 .theme--dark {
-  --back: rgba(0, 31, 63, 0.7);
-  --element: linear-gradient(45deg, #001f3f, #003366);
-  --shadow: #003366;
-  --pils-back: rgba(255, 255, 255, 0.05);
+  --back: linear-gradient(135deg, rgba(15, 32, 56, 0.95) 0%, rgba(32, 58, 96, 0.85) 100%);
+  --element: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  --shadow: rgba(0, 0, 0, 0.3);
+  --pils-back: rgba(255, 255, 255, 0.08);
   --text-primary: #ffffff;
-  --text-secondary: #a6a6a6;
-  --text-third: #cccccc;
+  --text-secondary: #b8c5d1;
+  --text-third: #d1dce5;
   --text-cv: #82DC7D;
-  background: url('../assets/images/spajce-bg.jpg') center/cover fixed;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #0f2038 0%, #1a3a5c 50%, #203a60 100%);
+  background-attachment: fixed;
 }
 
 input[type="checkbox"] {
@@ -61,14 +63,19 @@ body {
 #container {
   position: relative;
   background: var(--element);
-  box-shadow: -5px -5px 15px -4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   overflow: hidden;
   transition: all 0.6s;
   opacity: 0;
-  border-radius: 15px;
+  border-radius: 20px;
   animation: fade_in 1s forwards;
   opacity: 0;
   transform: scale(0.6) translateX(150%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
   &:before {
     content: '';
@@ -77,7 +84,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 20px;
     z-index: -1;
   }
 
@@ -133,20 +141,24 @@ body {
 
   .left-section {
     height: 100%;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     display: flex;
     position: relative;
     justify-content: space-evenly;
     align-content: center;
     align-items: center;
     padding: 10px;
+    border-radius: 20px;
 
     .profile-pic {
       width: 140px;
       flex-basis: 140px;
       flex-shrink: 0;
       border-radius: 50%;
-      box-shadow: inset 0 0 10px 6px rgba(0, 0, 0, 0.2);
+      box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
     }
 
     .profile-detail {
@@ -205,14 +217,19 @@ body {
   align-content: space-between;
 
   .pils {
-    background: var(--pils-back);
-    box-shadow: inset 0 0 0 1px var(--border), 0 10px 30px -10px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border-radius: 60px;
     transition: all 0.3s;
     font-size: 13px;
     cursor: pointer;
     margin: 5px;
     color: var(--text-primary);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
     a,
     a:visited,
@@ -354,52 +371,66 @@ img:hover {
 .skill-tag {
   display: inline-block;
   margin-bottom: 2px;
-  padding: 3px 7px;
-  background-color: #007cf8;
+  margin-right: 4px;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--text-primary);
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 0.8rem;
-  transition: background-color 0.3s, color 0.3s;
-  /* Add transition effect */
+  font-weight: 500;
+  transition: all 0.3s ease;
   cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .skill-tag:hover {
-  background-color: #0056b3;
-  /* Hover background color */
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Apply the tag style to each skill */
+/* Skill tag color variations - subtle accent colors */
 .skill-csharp {
-  background-color: #007cf8;
+  background: linear-gradient(135deg, rgba(0, 124, 248, 0.2), rgba(0, 124, 248, 0.1));
+  border-color: rgba(0, 124, 248, 0.3);
 }
 
 .skill-dotnet {
-  background-color: #f48126;
+  background: linear-gradient(135deg, rgba(244, 129, 38, 0.2), rgba(244, 129, 38, 0.1));
+  border-color: rgba(244, 129, 38, 0.3);
 }
 
 .skill-backend {
-  background-color: #6e40c9;
+  background: linear-gradient(135deg, rgba(110, 64, 201, 0.2), rgba(110, 64, 201, 0.1));
+  border-color: rgba(110, 64, 201, 0.3);
 }
 
 .skill-winforms {
-  background-color: #163ca3;
+  background: linear-gradient(135deg, rgba(22, 60, 163, 0.2), rgba(22, 60, 163, 0.1));
+  border-color: rgba(22, 60, 163, 0.3);
 }
 
 .skill-javascript {
-  background-color: #007cf8;
+  background: linear-gradient(135deg, rgba(240, 219, 79, 0.2), rgba(240, 219, 79, 0.1));
+  border-color: rgba(240, 219, 79, 0.3);
 }
 
 .skill-vue3 {
-  background-color: #f48126;
+  background: linear-gradient(135deg, rgba(65, 184, 131, 0.2), rgba(65, 184, 131, 0.1));
+  border-color: rgba(65, 184, 131, 0.3);
 }
 
 .skill-bootstrap {
-  background-color: #6e40c9;
+  background: linear-gradient(135deg, rgba(121, 82, 179, 0.2), rgba(121, 82, 179, 0.1));
+  border-color: rgba(121, 82, 179, 0.3);
 }
 
 .skill-typescript {
-  background-color: #163ca3;
+  background: linear-gradient(135deg, rgba(49, 120, 198, 0.2), rgba(49, 120, 198, 0.1));
+  border-color: rgba(49, 120, 198, 0.3);
 }
 
 .profile-title {
