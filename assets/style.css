@@ -69,13 +69,14 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   overflow: hidden;
   transition: all 0.6s;
-  opacity: 0;
   border-radius: 20px;
-  animation: fade_in 1s forwards;
-  opacity: 0;
-  transform: scale(0.6) translateX(150%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  
+  /* Initial state for terminal-like animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: terminalBoot 1.2s ease-out forwards;
 
   &:before {
     content: '';
@@ -87,6 +88,22 @@ body {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     border-radius: 20px;
     z-index: -1;
+  }
+
+  /* Typing cursor effect on container border */
+  &::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00ff88, #0099ff, #ff0099, #ffaa00);
+    border-radius: 20px;
+    opacity: 0;
+    z-index: -1;
+    animation: borderGlow 2s ease-out forwards;
+    animation-delay: 0.5s;
   }
 
   .header {
@@ -347,11 +364,156 @@ body {
 }
 
 /* Keyframe */
-@keyframes fade_in {
-  to {
-    opacity: 1;
-    transform: scale(1) translateX(0);
+@keyframes terminalBoot {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    filter: blur(10px);
   }
+  50% {
+    opacity: 0.7;
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Glowing border effect */
+@keyframes borderGlow {
+  0% {
+    opacity: 0;
+    filter: blur(20px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(20px);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(20px);
+  }
+}
+
+/* Code typing effect for profile elements */
+.profile-name,
+.profile-title,
+.skill-tag,
+.pils {
+  opacity: 0;
+  animation: typeIn 0.5s ease-out forwards;
+}
+
+.profile-name {
+  animation-delay: 0.6s;
+}
+
+.profile-title {
+  animation-delay: 0.8s;
+}
+
+.skill-tag {
+  animation-delay: calc(1s + var(--tag-index, 0) * 0.05s);
+}
+
+.skill-tag:nth-child(1) { --tag-index: 1; }
+.skill-tag:nth-child(2) { --tag-index: 2; }
+.skill-tag:nth-child(3) { --tag-index: 3; }
+.skill-tag:nth-child(4) { --tag-index: 4; }
+.skill-tag:nth-child(5) { --tag-index: 5; }
+.skill-tag:nth-child(6) { --tag-index: 6; }
+.skill-tag:nth-child(7) { --tag-index: 7; }
+.skill-tag:nth-child(8) { --tag-index: 8; }
+.skill-tag:nth-child(9) { --tag-index: 9; }
+.skill-tag:nth-child(10) { --tag-index: 10; }
+.skill-tag:nth-child(11) { --tag-index: 11; }
+.skill-tag:nth-child(12) { --tag-index: 12; }
+.skill-tag:nth-child(13) { --tag-index: 13; }
+.skill-tag:nth-child(14) { --tag-index: 14; }
+.skill-tag:nth-child(15) { --tag-index: 15; }
+.skill-tag:nth-child(16) { --tag-index: 16; }
+.skill-tag:nth-child(17) { --tag-index: 17; }
+.skill-tag:nth-child(18) { --tag-index: 18; }
+.skill-tag:nth-child(19) { --tag-index: 19; }
+.skill-tag:nth-child(20) { --tag-index: 20; }
+.skill-tag:nth-child(21) { --tag-index: 21; }
+.skill-tag:nth-child(22) { --tag-index: 22; }
+.skill-tag:nth-child(23) { --tag-index: 23; }
+.skill-tag:nth-child(24) { --tag-index: 24; }
+.skill-tag:nth-child(25) { --tag-index: 25; }
+.skill-tag:nth-child(26) { --tag-index: 26; }
+
+.pils:nth-child(1) { animation-delay: 1.6s; }
+.pils:nth-child(2) { animation-delay: 1.7s; }
+.pils:nth-child(3) { animation-delay: 1.8s; }
+.pils:nth-child(4) { animation-delay: 1.9s; }
+
+@keyframes typeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Profile picture zoom effect */
+.profile-pic {
+  opacity: 0;
+  transform: scale(0);
+  animation: profilePicReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes profilePicReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Matrix-like effect for email (optional) */
+.profile-email {
+  position: relative;
+  opacity: 0;
+  animation: typeIn 0.5s ease-out forwards;
+  animation-delay: 1s;
+}
+
+/* Subtle particle effect in background (optional) */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  33% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  66% {
+    transform: translateY(5px) translateX(-5px);
+  }
+}
+
+.left-section::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(120, 255, 214, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(120, 214, 255, 0.1) 0%, transparent 50%);
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .button:hover {
