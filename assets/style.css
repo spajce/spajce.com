@@ -280,8 +280,8 @@ body {
 
 @media screen and (min-width: 768px) {
   #container {
-    width: 540px;
-    height: 300px;
+    width: 700px;
+    height: 350px;
 
     .left-section {
       width: 100%;
@@ -294,13 +294,13 @@ body {
   }
 
   .profile-detail {
-    flex-basis: 400px;
+    flex-basis: 450px;
   }
 
   .profile-pils {
     justify-content: flex-end;
     margin: 0 10px;
-    flex-basis: 240px;
+    flex-basis: 200px;
   }
 }
 
@@ -308,21 +308,25 @@ body {
   #container {
     flex-grow: 1;
     height: 100%;
+    max-width: 95vw;
+    margin: 10px;
 
     .left-section {
       width: 100%;
       flex-direction: column;
       justify-content: center;
-      padding: 10px;
+      padding: 15px;
 
       .profile-detail {
-        padding: 20px;
+        padding: 15px;
+        text-align: center;
       }
     }
   }
 
   .profile-pils {
     justify-content: center;
+    margin-top: 10px;
   }
 
   .pop-up-menu {
@@ -370,14 +374,14 @@ img:hover {
 
 .skill-tag {
   display: inline-block;
-  margin-bottom: 2px;
-  margin-right: 4px;
-  padding: 4px 10px;
+  margin-bottom: 3px;
+  margin-right: 3px;
+  padding: 3px 8px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--text-primary);
-  border-radius: 8px;
-  font-size: 0.8rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
   font-weight: 500;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -433,8 +437,117 @@ img:hover {
   border-color: rgba(49, 120, 198, 0.3);
 }
 
+.skill-linq {
+  background: linear-gradient(135deg, rgba(0, 124, 248, 0.2), rgba(0, 124, 248, 0.1));
+  border-color: rgba(0, 124, 248, 0.3);
+}
+
+.skill-ef-core {
+  background: linear-gradient(135deg, rgba(244, 129, 38, 0.2), rgba(244, 129, 38, 0.1));
+  border-color: rgba(244, 129, 38, 0.3);
+}
+
+.skill-vuetifyjs {
+  background: linear-gradient(135deg, rgba(65, 184, 131, 0.2), rgba(65, 184, 131, 0.1));
+  border-color: rgba(65, 184, 131, 0.3);
+}
+
+.skill-socketio {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.skill-mysql {
+  background: linear-gradient(135deg, rgba(0, 117, 143, 0.2), rgba(0, 117, 143, 0.1));
+  border-color: rgba(0, 117, 143, 0.3);
+}
+
+.skill-mssql {
+  background: linear-gradient(135deg, rgba(204, 0, 0, 0.2), rgba(204, 0, 0, 0.1));
+  border-color: rgba(204, 0, 0, 0.3);
+}
+
+.skill-sqlite {
+  background: linear-gradient(135deg, rgba(3, 125, 214, 0.2), rgba(3, 125, 214, 0.1));
+  border-color: rgba(3, 125, 214, 0.3);
+}
+
+.skill-crystal-reports {
+  background: linear-gradient(135deg, rgba(153, 51, 255, 0.2), rgba(153, 51, 255, 0.1));
+  border-color: rgba(153, 51, 255, 0.3);
+}
+
+.skill-devexpress-winforms {
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.2), rgba(255, 102, 0, 0.1));
+  border-color: rgba(255, 102, 0, 0.3);
+}
+
+.skill-sap-sdk {
+  background: linear-gradient(135deg, rgba(0, 143, 211, 0.2), rgba(0, 143, 211, 0.1));
+  border-color: rgba(0, 143, 211, 0.3);
+}
+
+.skill-sap-b1 {
+  background: linear-gradient(135deg, rgba(0, 143, 211, 0.2), rgba(0, 143, 211, 0.1));
+  border-color: rgba(0, 143, 211, 0.3);
+}
+
+.skill-git {
+  background: linear-gradient(135deg, rgba(240, 80, 50, 0.2), rgba(240, 80, 50, 0.1));
+  border-color: rgba(240, 80, 50, 0.3);
+}
+
+.skill-cloudflare {
+  background: linear-gradient(135deg, rgba(246, 130, 31, 0.2), rgba(246, 130, 31, 0.1));
+  border-color: rgba(246, 130, 31, 0.3);
+}
+
+.skill-digital-ocean {
+  background: linear-gradient(135deg, rgba(0, 105, 255, 0.2), rgba(0, 105, 255, 0.1));
+  border-color: rgba(0, 105, 255, 0.3);
+}
+
+.skill-ubuntu {
+  background: linear-gradient(135deg, rgba(233, 84, 32, 0.2), rgba(233, 84, 32, 0.1));
+  border-color: rgba(233, 84, 32, 0.3);
+}
+
+.skill-system-administration {
+  background: linear-gradient(135deg, rgba(128, 128, 128, 0.2), rgba(128, 128, 128, 0.1));
+  border-color: rgba(128, 128, 128, 0.3);
+}
+
+
 .profile-title {
   color: var(--text-secondary);
-  margin-bottom: 25px;
-  /* Add some space below the title */
+  margin-bottom: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.profile-summary {
+  color: var(--text-secondary);
+  font-size: 0.925rem;
+  line-height: 1.4;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+/* Custom scrollbar for skill tags area */
+.profile-summary::-webkit-scrollbar {
+  width: 4px;
+}
+
+.profile-summary::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.profile-summary::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.profile-summary::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
