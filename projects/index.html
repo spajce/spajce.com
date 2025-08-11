@@ -8,124 +8,180 @@
   <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet/less" type="text/css" href="/assets/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
   <style>
     /* Reset and base styles */
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      padding: 0;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #ffffff;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #0f2038 0%, #1a3a5c 50%, #203a60 100%);
+      background-attachment: fixed;
       min-height: 100vh;
-      background: var(--bg-color, #1a1a2e);
-      font-family: var(--font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+      overflow-x: hidden;
     }
 
-    /* CSS Variables fallbacks */
+    /* CSS Custom Properties */
     :root {
+      --primary-gradient: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-bg-hover: rgba(255, 255, 255, 0.1);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --border-color-hover: rgba(255, 255, 255, 0.2);
       --text-primary: #ffffff;
-      --text-secondary: #b0b0b0;
-      --bg-color: #1a1a2e;
+      --text-secondary: #b8c5d1;
+      --text-third: #d1dce5;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      --transition-fast: all 0.2s ease;
+      --transition-normal: all 0.3s ease;
+      --transition-slow: all 0.5s ease;
+      --border-radius-sm: 0.5rem;
+      --border-radius-md: 1rem;
+      --border-radius-lg: 1.5rem;
+      --border-radius-xl: 2rem;
     }
 
-    /* Portfolio specific styles */
+    /* Container and Layout */
     .portfolio-container {
-      max-width: 1200px;
-      width: 100%;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 80px 20px 40px 20px; /* Added top padding to account for fixed button */
+      padding: 5rem 1rem 3rem 1rem;
       position: relative;
     }
 
-    .portfolio-header {
-      text-align: center;
-      margin-bottom: 50px;
-      padding-top: 20px; /* Extra padding to ensure visibility */
-      z-index: 1;
-      position: relative;
-    }
-
-    .portfolio-header h1 {
-      color: var(--text-primary);
-      font-size: 3rem;
-      font-weight: 700;
-      margin: 0 0 15px 0;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .portfolio-header p {
-      color: var(--text-secondary);
-      font-size: 1.2rem;
-      margin: 0;
-      opacity: 0.9;
-    }
-
+    /* Back to Home Button */
     .back-to-home {
       position: fixed;
-      top: 25px;
-      left: 25px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 50px;
-      padding: 12px 24px;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1000;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 2rem;
       color: var(--text-primary);
       text-decoration: none;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      z-index: 1000;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       font-weight: 500;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: var(--transition-normal);
+      touch-action: manipulation;
+      transform: translateZ(0);
+      box-shadow: var(--shadow-sm);
     }
 
     .back-to-home:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      border-color: rgba(255, 255, 255, 0.3);
+      background: var(--card-bg-hover);
+      border-color: var(--border-color-hover);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .back-to-home:active {
+      transform: translateY(0) scale(0.95);
     }
 
     .back-to-home i {
-      margin-right: 8px;
+      font-size: 1rem;
     }
 
+    .back-text {
+      display: none;
+    }
+
+    /* Header */
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding-top: 2rem;
+      animation: fade_in 1s forwards;
+      opacity: 0;
+    }
+
+    .portfolio-header h1 {
+      font-size: clamp(2rem, 8vw, 4.5rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .portfolio-header p {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 48rem;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Projects Grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+      gap: clamp(1.5rem, 4vw, 2.5rem);
+      margin-top: 3rem;
     }
 
+    /* Project Cards */
     .project-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-xl);
       overflow: hidden;
-      transition: all 0.3s ease;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: var(--transition-slow);
+      transform: translateZ(0);
       height: fit-content;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      animation: fade_in 0.8s forwards;
+      opacity: 0;
+      transform: scale(0.95);
     }
+
+    .project-card:nth-child(1) { animation-delay: 0.1s; }
+    .project-card:nth-child(2) { animation-delay: 0.2s; }
+    .project-card:nth-child(3) { animation-delay: 0.3s; }
+    .project-card:nth-child(4) { animation-delay: 0.4s; }
+    .project-card:nth-child(5) { animation-delay: 0.5s; }
+    .project-card:nth-child(6) { animation-delay: 0.6s; }
 
     .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: var(--card-bg-hover);
+      border-color: var(--border-color-hover);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-xl);
     }
 
+    /* Project Image */
     .project-image {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, rgba(30, 144, 255, 0.3), rgba(138, 43, 226, 0.3));
+      height: clamp(12rem, 20vw, 14rem);
+      background: linear-gradient(135deg,
+          rgba(59, 130, 246, 0.2) 0%,
+          rgba(147, 51, 234, 0.2) 50%,
+          rgba(236, 72, 153, 0.2) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -133,270 +189,300 @@
       overflow: hidden;
     }
 
-    .project-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
+    .project-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+      transition: var(--transition-slow);
     }
 
-    .project-image:hover img {
-      transform: scale(1.1);
+    .project-card:hover .project-image::before {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
     }
 
     .project-placeholder {
-      color: var(--text-secondary);
-      font-size: 3rem;
-      opacity: 0.5;
+      font-size: clamp(3rem, 8vw, 5rem);
+      color: var(--text-muted);
+      transition: var(--transition-normal);
+      position: relative;
+      z-index: 1;
     }
 
+    .project-card:hover .project-placeholder {
+      color: rgba(255, 255, 255, 0.8);
+      transform: scale(1.1);
+    }
+
+    /* Project Content */
     .project-content {
-      padding: 25px;
+      padding: clamp(1.5rem, 4vw, 2rem);
     }
 
     .project-title {
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
+      font-weight: 700;
       color: var(--text-primary);
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+      transition: var(--transition-normal);
+    }
+
+    .project-card:hover .project-title {
+      color: #60a5fa;
     }
 
     .project-description {
+      font-size: clamp(0.875rem, 2.5vw, 1rem);
       color: var(--text-secondary);
-      font-size: 0.95rem;
       line-height: 1.6;
-      margin-bottom: 20px;
+      margin-bottom: 1.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
+    /* Technology Tags */
     .project-tech {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .tech-tag {
+      padding: 0.5rem 1rem;
       background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: var(--text-primary);
-      padding: 6px 12px;
-      border-radius: 15px;
-      font-size: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 2rem;
+      font-size: clamp(0.75rem, 2vw, 0.875rem);
       font-weight: 500;
+      color: var(--text-primary);
       white-space: nowrap;
+      transition: var(--transition-normal);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
+    .tech-tag:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Project Links */
     .project-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      flex-direction: column;
+      gap: 0.75rem;
     }
 
     .project-link {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text-primary);
-      padding: 10px 18px;
-      border-radius: 25px;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: var(--border-radius-md);
       text-decoration: none;
-      font-size: 0.85rem;
-      transition: all 0.3s ease;
-      white-space: nowrap;
+      font-size: clamp(0.875rem, 2.5vw, 1rem);
+      font-weight: 500;
+      transition: var(--transition-normal);
+      touch-action: manipulation;
+      min-height: 44px;
     }
 
-    .project-link:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-1px);
+    .project-link.demo {
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--text-primary);
     }
 
     .project-link.demo:hover {
-      border-color: #007cf8;
-      box-shadow: 0 5px 20px rgba(0, 124, 248, 0.3);
+      background: rgba(59, 130, 246, 0.3);
+      border-color: rgba(59, 130, 246, 0.5);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+    }
+
+    .project-link.github {
+      background: rgba(147, 51, 234, 0.2);
+      border: 1px solid rgba(147, 51, 234, 0.3);
+      color: var(--text-primary);
     }
 
     .project-link.github:hover {
-      border-color: #6e40c9;
-      box-shadow: 0 5px 20px rgba(110, 64, 201, 0.3);
+      background: rgba(147, 51, 234, 0.3);
+      border-color: rgba(147, 51, 234, 0.5);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(147, 51, 234, 0.25);
     }
 
-    /* Tablet styles */
-    @media screen and (max-width: 1024px) {
-      .portfolio-container {
-        width: 95%;
-        padding: 70px 15px 30px 15px;
-      }
-
-      .portfolio-header h1 {
-        font-size: 2.5rem;
-      }
-
-      .portfolio-header p {
-        font-size: 1.1rem;
-      }
-
-      .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
+    .project-link:active {
+      transform: translateY(0) scale(0.95);
+    }
+    
+    /* Keyframes */
+    @keyframes fade_in {
+      to {
+        opacity: 1;
+        transform: scale(1) translateX(0);
       }
     }
 
-    /* Mobile styles */
-    @media screen and (max-width: 768px) {
+    /* Responsive Design */
+    /* Extra Small Devices (phones, 475px and up) */
+    @media (min-width: 475px) {
+      .back-text {
+        display: inline;
+      }
+
+      .back-to-home {
+        padding: 0.75rem 1.25rem;
+      }
+    }
+
+    /* Small Devices (landscape phones, 640px and up) */
+    @media (min-width: 640px) {
       .portfolio-container {
-        width: 100%;
-        padding: 60px 15px 20px 15px;
+        padding: 6rem 1.5rem 4rem 1.5rem;
       }
 
-      .portfolio-header {
-        margin-bottom: 30px;
-        padding-top: 15px;
-      }
-
-      .portfolio-header h1 {
-        font-size: 2.2rem;
-        margin-bottom: 10px;
-      }
-
-      .portfolio-header p {
+      .back-to-home {
+        top: 1.5rem;
+        left: 1.5rem;
+        padding: 1rem 1.5rem;
         font-size: 1rem;
       }
 
-      .back-to-home {
-        top: 15px;
-        left: 15px;
-        padding: 10px 20px;
-        font-size: 0.85rem;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        margin-top: 30px;
-      }
-
-      .project-content {
-        padding: 20px;
-      }
-
-      .project-title {
-        font-size: 1.3rem;
-      }
-
-      .project-description {
-        font-size: 0.9rem;
+      .portfolio-header {
+        margin-bottom: 5rem;
       }
 
       .project-links {
-        gap: 10px;
+        flex-direction: row;
+        gap: 1rem;
       }
 
       .project-link {
-        padding: 8px 16px;
-        font-size: 0.8rem;
+        flex: 1;
       }
     }
 
-    /* Small mobile styles */
-    @media screen and (max-width: 480px) {
+    /* Medium Devices (tablets, 768px and up) */
+    @media (min-width: 768px) {
       .portfolio-container {
-        padding: 50px 10px 15px 10px;
-      }
-
-      .portfolio-header h1 {
-        font-size: 1.8rem;
-      }
-
-      .portfolio-header p {
-        font-size: 0.95rem;
-      }
-
-      .back-to-home {
-        top: 10px;
-        left: 10px;
-        padding: 8px 16px;
-        font-size: 0.8rem;
-      }
-
-      .project-image {
-        height: 180px;
-      }
-
-      .project-content {
-        padding: 15px;
-      }
-
-      .project-title {
-        font-size: 1.2rem;
-      }
-
-      .project-description {
-        font-size: 0.85rem;
-      }
-
-      .tech-tag {
-        padding: 4px 10px;
-        font-size: 0.7rem;
-      }
-
-      .project-links {
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .project-link {
-        justify-content: center;
-        padding: 10px 16px;
-      }
-    }
-
-    /* Extra large screens */
-    @media screen and (min-width: 1400px) {
-      .portfolio-container {
-        max-width: 1400px;
+        padding: 7rem 2rem 5rem 2rem;
       }
 
       .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 35px;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      }
+    }
+
+    /* Large Devices (desktops, 1024px and up) */
+    @media (min-width: 1024px) {
+      .portfolio-container {
+        padding: 8rem 2rem 6rem 2rem;
       }
 
-      .portfolio-header h1 {
-        font-size: 3.5rem;
+      .portfolio-header {
+        margin-bottom: 6rem;
       }
 
-      .portfolio-header p {
-        font-size: 1.3rem;
+      .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 2.5rem;
+      }
+    }
+
+    /* Extra Large Devices (large desktops, 1280px and up) */
+    @media (min-width: 1280px) {
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+      }
+    }
+
+    /* Ultra Wide Screens (1536px and up) */
+    @media (min-width: 1536px) {
+      .portfolio-container {
+        max-width: 1600px;
+      }
+    }
+
+    /* High DPI Displays */
+    @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+      .project-placeholder {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /* Focus Styles for Accessibility */
+    .back-to-home:focus,
+    .project-link:focus {
+      outline: 2px solid #60a5fa;
+      outline-offset: 2px;
+    }
+
+    /* Print Styles */
+    @media print {
+      .back-to-home {
+        display: none;
+      }
+
+      .project-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+
+      .project-link {
+        color: #000 !important;
       }
     }
   </style>
 </head>
 
-<body id="body" class="theme--dark">
+<body>
   <a href="../index.html" class="back-to-home">
-    <i class="fa-solid fa-arrow-left"></i> Back to Home
+    <i class="fa-solid fa-arrow-left"></i>
+    <span class="back-text">Back to Home</span>
   </a>
 
   <div class="portfolio-container">
-    <div class="portfolio-header">
+    <header class="portfolio-header">
       <h1>My Portfolio</h1>
       <p>A collection of projects I've worked on</p>
-    </div>
+    </header>
 
-    <div class="projects-grid">
-      <!-- ...existing code... -->
-      <!-- Project 1 -->
-      <div class="project-card">
+    <main class="projects-grid">
+      <article class="project-card">
         <div class="project-image">
-          <!-- Replace with actual project image -->
           <i class="fa-solid fa-code project-placeholder"></i>
         </div>
         <div class="project-content">
           <h3 class="project-title">E-Commerce Platform</h3>
           <p class="project-description">
-            A full-stack e-commerce solution built with .NET Core and Vue.js. Features include product catalog, shopping cart, payment integration, and admin dashboard.
+            A full-stack e-commerce solution built with .NET Core and Vue.js. Features include product catalog, shopping
+            cart, payment integration, and admin dashboard.
           </p>
           <div class="project-tech">
             <span class="tech-tag">C#</span>
@@ -406,24 +492,26 @@
           </div>
           <div class="project-links">
             <a href="#" class="project-link demo">
-              <i class="fa-solid fa-external-link-alt"></i> Live Demo
+              <i class="fa-solid fa-external-link-alt"></i>
+              Live Demo
             </a>
             <a href="#" class="project-link github">
-              <i class="fa-brands fa-github"></i> GitHub
+              <i class="fa-brands fa-github"></i>
+              GitHub
             </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Project 2 -->
-      <div class="project-card">
+      <article class="project-card">
         <div class="project-image">
           <i class="fa-solid fa-mobile-alt project-placeholder"></i>
         </div>
         <div class="project-content">
           <h3 class="project-title">Task Management App</h3>
           <p class="project-description">
-            Cross-platform mobile application for task management built with .NET MAUI. Includes features like task scheduling, reminders, and team collaboration.
+            Cross-platform mobile application for task management built with .NET MAUI. Includes features like task
+            scheduling, reminders, and team collaboration.
           </p>
           <div class="project-tech">
             <span class="tech-tag">MAUI</span>
@@ -433,24 +521,26 @@
           </div>
           <div class="project-links">
             <a href="#" class="project-link demo">
-              <i class="fa-solid fa-external-link-alt"></i> Live Demo
+              <i class="fa-solid fa-external-link-alt"></i>
+              Live Demo
             </a>
             <a href="#" class="project-link github">
-              <i class="fa-brands fa-github"></i> GitHub
+              <i class="fa-brands fa-github"></i>
+              GitHub
             </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Project 3 -->
-      <div class="project-card">
+      <article class="project-card">
         <div class="project-image">
           <i class="fa-solid fa-chart-bar project-placeholder"></i>
         </div>
         <div class="project-content">
           <h3 class="project-title">Analytics Dashboard</h3>
           <p class="project-description">
-            Real-time analytics dashboard with interactive charts and reports. Built using MudBlazor components with a clean, modern interface.
+            Real-time analytics dashboard with interactive charts and reports. Built using MudBlazor components with a
+            clean, modern interface.
           </p>
           <div class="project-tech">
             <span class="tech-tag">Blazor</span>
@@ -460,24 +550,26 @@
           </div>
           <div class="project-links">
             <a href="#" class="project-link demo">
-              <i class="fa-solid fa-external-link-alt"></i> Live Demo
+              <i class="fa-solid fa-external-link-alt"></i>
+              Live Demo
             </a>
             <a href="#" class="project-link github">
-              <i class="fa-brands fa-github"></i> GitHub
+              <i class="fa-brands fa-github"></i>
+              GitHub
             </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Project 4 -->
-      <div class="project-card">
+      <article class="project-card">
         <div class="project-image">
           <i class="fa-solid fa-desktop project-placeholder"></i>
         </div>
         <div class="project-content">
           <h3 class="project-title">Inventory Management System</h3>
           <p class="project-description">
-            Desktop application for inventory management built with WinForms. Features barcode scanning, reporting, and multi-location support.
+            Desktop application for inventory management built with WinForms. Features barcode scanning, reporting, and
+            multi-location support.
           </p>
           <div class="project-tech">
             <span class="tech-tag">WinForms</span>
@@ -487,24 +579,26 @@
           </div>
           <div class="project-links">
             <a href="#" class="project-link demo">
-              <i class="fa-solid fa-external-link-alt"></i> Live Demo
+              <i class="fa-solid fa-external-link-alt"></i>
+              Live Demo
             </a>
             <a href="#" class="project-link github">
-              <i class="fa-brands fa-github"></i> GitHub
+              <i class="fa-brands fa-github"></i>
+              GitHub
             </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Project 5 -->
-      <div class="project-card">
+      <article class="project-card">
         <div class="project-image">
           <i class="fa-solid fa-globe project-placeholder"></i>
         </div>
         <div class="project-content">
           <h3 class="project-title">REST API Service</h3>
           <p class="project-description">
-            Scalable Web API built with .NET Core, featuring JWT authentication, rate limiting, and comprehensive documentation with Swagger.
+            Scalable Web API built with .NET Core, featuring JWT authentication, rate limiting, and comprehensive
+            documentation with Swagger.
           </p>
           <div class="project-tech">
             <span class="tech-tag">Web API</span>
@@ -514,24 +608,26 @@
           </div>
           <div class="project-links">
             <a href="#" class="project-link demo">
-              <i class="fa-solid fa-external-link-alt"></i> Live Demo
+              <i class="fa-solid fa-external-link-alt"></i>
+              Live Demo
             </a>
             <a href="#" class="project-link github">
-              <i class="fa-brands fa-github"></i> GitHub
+              <i class="fa-brands fa-github"></i>
+              GitHub
             </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Project 6 -->
-      <div class="project-card">
+      <article class="project-card">
         <div class="project-image">
           <i class="fa-brands fa-js-square project-placeholder"></i>
         </div>
         <div class="project-content">
           <h3 class="project-title">Interactive Web Components</h3>
           <p class="project-description">
-            Collection of reusable web components built with vanilla JavaScript and modern CSS. Includes form validators, modal dialogs, and data tables.
+            Collection of reusable web components built with vanilla JavaScript and modern CSS. Includes form
+            validators, modal dialogs, and data tables.
           </p>
           <div class="project-tech">
             <span class="tech-tag">JavaScript</span>
@@ -541,15 +637,17 @@
           </div>
           <div class="project-links">
             <a href="#" class="project-link demo">
-              <i class="fa-solid fa-external-link-alt"></i> Live Demo
+              <i class="fa-solid fa-external-link-alt"></i>
+              Live Demo
             </a>
             <a href="#" class="project-link github">
-              <i class="fa-brands fa-github"></i> GitHub
+              <i class="fa-brands fa-github"></i>
+              GitHub
             </a>
           </div>
         </div>
-      </div>
-    </div>
+      </article>
+    </main>
   </div>
 </body>
 
