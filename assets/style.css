@@ -344,42 +344,140 @@ body {
 @media screen and (max-width: 768px) {
   #container {
     flex-grow: 1;
-    height: 60%;
+    height: auto;
+    min-height: 60vh;
     max-width: 95vw;
     margin: 10px;
+    padding: 0;
 
     .left-section {
       width: 100%;
       flex-direction: column;
-      justify-content: center;
-      padding: 15px;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 20px 15px;
+      gap: 15px;
+
+      .profile-pic {
+        width: 120px;
+        height: 120px;
+        flex-basis: auto;
+        flex-shrink: 0;
+        margin: 0;
+        order: 1;
+      }
 
       .profile-detail {
-        padding: 15px;
+        padding: 0;
         text-align: center;
+        margin: 0;
+        order: 2;
+        width: 100%;
+
+        .profile-name {
+          font-size: 1.3rem;
+          margin-bottom: 5px;
+        }
+
+        .profile-title {
+          font-size: 0.95rem;
+          margin-bottom: 15px;
+        }
+
+        .profile-summary {
+          max-height: none;
+          overflow-y: visible;
+          margin-bottom: 15px;
+          text-align: center;
+        }
+
+        .profile-email {
+          margin-top: 10px;
+          font-size: 0.9rem;
+        }
       }
     }
   }
 
   .profile-pils {
     justify-content: center;
-    margin-top: 10px;
-  }
-
-  .pop-up-menu {
+    margin: 0;
+    order: 3;
     width: 100%;
-    height: 100%;
-    background: var(--menu);
+    flex-wrap: wrap;
+    gap: 8px;
 
-    .list-menu {
-      margin-top: 50px;
+    .pils {
+      margin: 2px;
+      font-size: 12px;
+      min-width: auto;
 
-      li {
-        font-size: 26px;
-        text-align: center;
-        margin-bottom: 30px;
+      a {
+        padding: 8px 12px;
+        white-space: nowrap;
       }
     }
+  }
+
+  .skill-tag {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    margin: 2px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #container {
+    margin: 5px;
+    max-width: 98vw;
+    min-height: 70vh;
+
+    .left-section {
+      padding: 15px 10px;
+      gap: 12px;
+
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+      }
+
+      .profile-detail {
+        .profile-name {
+          font-size: 1.2rem;
+        }
+
+        .profile-title {
+          font-size: 0.9rem;
+        }
+
+        .profile-summary {
+          font-size: 0.85rem;
+          line-height: 1.3;
+        }
+
+        .profile-email {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+
+  .profile-pils {
+    gap: 6px;
+
+    .pils {
+      font-size: 11px;
+
+      a {
+        padding: 6px 10px;
+      }
+    }
+  }
+
+  .skill-tag {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+    margin: 1px;
   }
 }
 
