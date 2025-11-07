@@ -15,6 +15,9 @@
 <body id="body" class="theme--dark">
   <div id="container">
     <div class="header">
+      <div class="night-mode">
+        <i class="fas fa-moon"></i>
+      </div>
     </div>
     <section class="left-section">
       <img class="profile-pic" src="https://avatars.githubusercontent.com/u/3891702?v=4" />
@@ -22,33 +25,33 @@
         <p class="profile-name">Japhet Carillo</p>
         <p class="profile-title">Software Developer</p>
         <div class="profile-summary">
-          <span class="skill-tag skill-csharp">C#</span>
-          <span class="skill-tag skill-dotnet">.Net Core</span>
-          <span class="skill-tag skill-linq">Linq</span>
-          <span class="skill-tag skill-ef-core">EF Core</span>
-          <span class="skill-tag skill-backend">Web API</span>
-          <span class="skill-tag skill-winforms">WinForms</span>
-          <span class="skill-tag skill-javascript">JavaScript</span>
-          <span class="skill-tag skill-vue3">Vue3</span>
-          <span class="skill-tag skill-bootstrap">Bootstrap</span>
-          <span class="skill-tag skill-typescript">TypeScript</span>
-          <span class="skill-tag skill-dotnet">MudBlazor</span>
-          <span class="skill-tag skill-winforms">MAUI</span>
-          <span class="skill-tag skill-csharp">HyBrid Blazor</span>
-          <span class="skill-tag skill-vuetifyjs">Vuetifyjs</span>
-          <span class="skill-tag skill-socketio">Socket.IO</span>
-          <span class="skill-tag skill-mysql">MySQL</span>
-          <span class="skill-tag skill-mssql">MSSQL</span>
-          <span class="skill-tag skill-sqlite">SQLite</span>
-          <span class="skill-tag skill-crystal-reports">Crystal Report</span>
-          <span class="skill-tag skill-devexpress-winforms">DevExpress WinForm</span>
-          <span class="skill-tag skill-sap-sdk">SAP SDK</span>
-          <span class="skill-tag skill-sap-b1">SAP B1</span>
-          <span class="skill-tag skill-git">Git</span>
-          <span class="skill-tag skill-cloudflare">Cloudflare</span>
-          <span class="skill-tag skill-digital-ocean">Digital Ocean</span>
-          <span class="skill-tag skill-ubuntu">Ubuntu</span>
-          <span class="skill-tag skill-system-administration">System Administration</span>
+          <span class="skill-tag skill-csharp" style="--tag-index: 1;">C#</span>
+          <span class="skill-tag skill-dotnet" style="--tag-index: 2;">.Net Core</span>
+          <span class="skill-tag skill-linq" style="--tag-index: 3;">Linq</span>
+          <span class="skill-tag skill-ef-core" style="--tag-index: 4;">EF Core</span>
+          <span class="skill-tag skill-backend" style="--tag-index: 5;">Web API</span>
+          <span class="skill-tag skill-winforms" style="--tag-index: 6;">WinForms</span>
+          <span class="skill-tag skill-javascript" style="--tag-index: 7;">JavaScript</span>
+          <span class="skill-tag skill-vue3" style="--tag-index: 8;">Vue3</span>
+          <span class="skill-tag skill-bootstrap" style="--tag-index: 9;">Bootstrap</span>
+          <span class="skill-tag skill-typescript" style="--tag-index: 10;">TypeScript</span>
+          <span class="skill-tag skill-dotnet" style="--tag-index: 11;">MudBlazor</span>
+          <span class="skill-tag skill-winforms" style="--tag-index: 12;">MAUI</span>
+          <span class="skill-tag skill-csharp" style="--tag-index: 13;">HyBrid Blazor</span>
+          <span class="skill-tag skill-vuetifyjs" style="--tag-index: 14;">Vuetifyjs</span>
+          <span class="skill-tag skill-socketio" style="--tag-index: 15;">Socket.IO</span>
+          <span class="skill-tag skill-mysql" style="--tag-index: 16;">MySQL</span>
+          <span class="skill-tag skill-mssql" style="--tag-index: 17;">MSSQL</span>
+          <span class="skill-tag skill-sqlite" style="--tag-index: 18;">SQLite</span>
+          <span class="skill-tag skill-crystal-reports" style="--tag-index: 19;">Crystal Report</span>
+          <span class="skill-tag skill-devexpress-winforms" style="--tag-index: 20;">DevExpress WinForm</span>
+          <span class="skill-tag skill-sap-sdk" style="--tag-index: 21;">SAP SDK</span>
+          <span class="skill-tag skill-sap-b1" style="--tag-index: 22;">SAP B1</span>
+          <span class="skill-tag skill-git" style="--tag-index: 23;">Git</span>
+          <span class="skill-tag skill-cloudflare" style="--tag-index: 24;">Cloudflare</span>
+          <span class="skill-tag skill-digital-ocean" style="--tag-index: 25;">Digital Ocean</span>
+          <span class="skill-tag skill-ubuntu" style="--tag-index: 26;">Ubuntu</span>
+          <span class="skill-tag skill-system-administration" style="--tag-index: 27;">System Administration</span>
         </div>
         <a class="profile-email" href="mailto:japhetcarillo@gmail.com">japhetcarillo@gmail.com</a>
       </div>
@@ -65,6 +68,40 @@
     </section>
     <div class="front-smooth"></div>
   </div>
+  <script>
+    const container = document.getElementById('container');
+    const nightModeToggle = document.querySelector('.night-mode');
+    const body = document.getElementById('body');
+    const nightModeIcon = nightModeToggle.querySelector('i');
+
+    nightModeToggle.addEventListener('click', () => {
+      body.classList.toggle('theme--light');
+      body.classList.toggle('theme--dark');
+
+      if (body.classList.contains('theme--dark')) {
+        nightModeIcon.classList.remove('fa-sun');
+        nightModeIcon.classList.add('fa-moon');
+      } else {
+        nightModeIcon.classList.remove('fa-moon');
+        nightModeIcon.classList.add('fa-sun');
+      }
+    });
+
+    container.addEventListener('mousemove', (e) => {
+      const { left, top, width, height } = container.getBoundingClientRect();
+      const x = e.clientX - left - width / 2;
+      const y = e.clientY - top - height / 2;
+
+      const rotateX = (y / height) * -10;
+      const rotateY = (x / width) * 10;
+
+      container.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1)`;
+    });
+
+    container.addEventListener('mouseleave', () => {
+      container.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    });
+  </script>
 </body>
 
 </html>
