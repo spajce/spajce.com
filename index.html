@@ -53,17 +53,21 @@
           <span class="skill-tag skill-ubuntu" style="--tag-index: 26;">Ubuntu</span>
           <span class="skill-tag skill-system-administration" style="--tag-index: 27;">System Administration</span>
         </div>
-        <a class="profile-email" href="mailto:japhetcarillo@gmail.com">japhetcarillo@gmail.com</a>
+        <a class="profile-email" href="mailto:japhetcarillo@gmail.com" id="emailBtn">
+          <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+          japhetcarillo@gmail.com
+          <span class="email-tooltip" id="emailTooltip">Click to copy</span>
+        </a>
       </div>
       <div class="profile-pils">
         <span class="pils"><a href="https://www.linkedin.com/in/japhetcarillo/" target="_blank"><i
-              class="fa-brands fa-linkedin"></i> Linkedin</a></span>
-        <span class="pils" style="width: 120px;"><a href="https://stackoverflow.com/users/1080742/spajce"
-            target="_blank"><i class="fa-brands fa-stack-overflow"></i> stackoverflow</a></span>
+              class="fa-brands fa-linkedin"></i> LinkedIn</a></span>
+        <span class="pils"><a href="https://stackoverflow.com/users/1080742/spajce"
+            target="_blank"><i class="fa-brands fa-stack-overflow"></i> Stack Overflow</a></span>
         <span class="pils"><a href="https://github.com/spajce" target="_blank"><i class="fa-brands fa-github"></i>
             GitHub</a></span>
-        <!-- <span class="pils"><a href="./projects/" target="_blank"><i class="fa-solid fa-briefcase"></i>
-            Projects</a></span> -->
+        <span class="pils"><a href="./projects/" target="_blank"><i class="fa-solid fa-briefcase"></i>
+            Projects</a></span>
       </div>
     </section>
     <div class="front-smooth"></div>
@@ -92,14 +96,61 @@
       const x = e.clientX - left - width / 2;
       const y = e.clientY - top - height / 2;
 
-      const rotateX = (y / height) * -10;
-      const rotateY = (x / width) * 10;
+      const rotateX = (y / height) * -8;
+      const rotateY = (x / width) * 8;
 
-      container.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1)`;
+      container.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
     });
 
     container.addEventListener('mouseleave', () => {
-      container.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      container.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) translateZ(0)';
+    });
+
+    // Email copy functionality
+    const emailBtn = document.getElementById('emailBtn');
+    const emailTooltip = document.getElementById('emailTooltip');
+    const emailAddress = 'japhetcarillo@gmail.com';
+
+    emailBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      navigator.clipboard.writeText(emailAddress).then(() => {
+        emailTooltip.textContent = 'Copied!';
+        emailTooltip.classList.add('show');
+        
+        setTimeout(() => {
+          emailTooltip.classList.remove('show');
+          setTimeout(() => {
+            emailTooltip.textContent = 'Click to copy';
+          }, 300);
+        }, 2000);
+      }).catch(() => {
+        window.location.href = `mailto:${emailAddress}`;
+      });
+    });
+
+    emailBtn.addEventListener('mouseenter', () => {
+      if (emailTooltip.textContent === 'Click to copy') {
+        emailTooltip.classList.add('show');
+      }
+    });
+
+    emailBtn.addEventListener('mouseleave', () => {
+      if (emailTooltip.textContent === 'Click to copy') {
+        setTimeout(() => {
+          emailTooltip.classList.remove('show');
+        }, 200);
+      }
+    });
+
+    // Skill tag interactions
+    document.querySelectorAll('.skill-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        tag.style.animation = 'none';
+        setTimeout(() => {
+          tag.style.animation = '';
+        }, 10);
+      });
     });
   </script>
 </body>
