@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,300,500,700");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Sora:wght@600;700;800&display=swap");
 
 * {
   margin: 0;
@@ -258,7 +257,10 @@ body {
       margin-left: 20px;
 
       .profile-name {
+        font-family: "Sora", "Roboto", sans-serif;
         font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: 0.25px;
         background: linear-gradient(90deg, #ffffff 0%, #82dcff 50%, #ffffff 100%);
         background-size: 200% auto;
         -webkit-background-clip: text;
