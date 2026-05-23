@@ -13,6 +13,7 @@
 </head>
 
 <body id="body" class="theme--dark">
+  <canvas id="particles-bg"></canvas>
   <div id="container">
     <div class="header">
       <div class="night-mode">
@@ -22,29 +23,42 @@
     <section class="left-section">
       <img class="profile-pic" src="https://avatars.githubusercontent.com/u/3891702?v=4" />
       <div class="profile-detail">
-        <p class="profile-name">Japhet Carillo</p>
-        <p class="profile-title">Software Developer</p>
+        <div class="profile-name-row">
+          <p class="profile-name">Japhet Carillo</p>
+          <span class="status-badge" id="statusBadge" title="Click to change status"><span class="status-dot"
+              id="statusDot"></span><span id="statusText">Available</span></span>
+        </div>
+        <p class="profile-title" id="typingTitle"><span class="title-text">Software Developer</span><span
+            class="typing-cursor">|</span></p>
+        <span class="profile-maps"><i class="fa-solid fa-location-dot"></i> Philippines &nbsp;&bull;&nbsp; <i
+            class="fa-regular fa-clock"></i> GMT+8</span>
         <div class="profile-summary">
+          <span class="skill-category">Backend</span>
           <span class="skill-tag skill-csharp" style="--tag-index: 1;">C#</span>
           <span class="skill-tag skill-dotnet" style="--tag-index: 2;">.Net Core</span>
           <span class="skill-tag skill-linq" style="--tag-index: 3;">Linq</span>
           <span class="skill-tag skill-ef-core" style="--tag-index: 4;">EF Core</span>
           <span class="skill-tag skill-backend" style="--tag-index: 5;">Web API</span>
+          <span class="skill-tag skill-backend" style="--tag-index: 6;">Dapper</span>
+          <span class="skill-category">Desktop</span>
           <span class="skill-tag skill-winforms" style="--tag-index: 6;">WinForms</span>
-          <span class="skill-tag skill-javascript" style="--tag-index: 7;">JavaScript</span>
-          <span class="skill-tag skill-vue3" style="--tag-index: 8;">Vue3</span>
-          <span class="skill-tag skill-bootstrap" style="--tag-index: 9;">Bootstrap</span>
-          <span class="skill-tag skill-typescript" style="--tag-index: 10;">TypeScript</span>
-          <span class="skill-tag skill-dotnet" style="--tag-index: 11;">MudBlazor</span>
-          <span class="skill-tag skill-winforms" style="--tag-index: 12;">MAUI</span>
-          <span class="skill-tag skill-csharp" style="--tag-index: 13;">HyBrid Blazor</span>
-          <span class="skill-tag skill-vuetifyjs" style="--tag-index: 14;">Vuetifyjs</span>
-          <span class="skill-tag skill-socketio" style="--tag-index: 15;">Socket.IO</span>
-          <span class="skill-tag skill-mysql" style="--tag-index: 16;">MySQL</span>
-          <span class="skill-tag skill-mssql" style="--tag-index: 17;">MSSQL</span>
-          <span class="skill-tag skill-sqlite" style="--tag-index: 18;">SQLite</span>
-          <span class="skill-tag skill-crystal-reports" style="--tag-index: 19;">Crystal Report</span>
-          <span class="skill-tag skill-devexpress-winforms" style="--tag-index: 20;">DevExpress WinForm</span>
+          <span class="skill-tag skill-dotnet" style="--tag-index: 7;">MudBlazor</span>
+          <span class="skill-tag skill-winforms" style="--tag-index: 8;">MAUI</span>
+          <span class="skill-tag skill-csharp" style="--tag-index: 9;">Hybrid Blazor</span>
+          <span class="skill-tag skill-devexpress-winforms" style="--tag-index: 10;">DevExpress WinForm</span>
+          <span class="skill-category">Frontend</span>
+          <span class="skill-tag skill-javascript" style="--tag-index: 11;">JavaScript</span>
+          <span class="skill-tag skill-vue3" style="--tag-index: 12;">Vue3</span>
+          <span class="skill-tag skill-bootstrap" style="--tag-index: 13;">Bootstrap</span>
+          <span class="skill-tag skill-typescript" style="--tag-index: 14;">TypeScript</span>
+          <span class="skill-tag skill-vuetifyjs" style="--tag-index: 15;">Vuetifyjs</span>
+          <span class="skill-tag skill-socketio" style="--tag-index: 16;">Socket.IO</span>
+          <span class="skill-category">Database</span>
+          <span class="skill-tag skill-mysql" style="--tag-index: 17;">MySQL</span>
+          <span class="skill-tag skill-mssql" style="--tag-index: 18;">MSSQL</span>
+          <span class="skill-tag skill-sqlite" style="--tag-index: 19;">SQLite</span>
+          <span class="skill-tag skill-crystal-reports" style="--tag-index: 20;">Crystal Report</span>
+          <span class="skill-category">Infrastructure</span>
           <span class="skill-tag skill-sap-sdk" style="--tag-index: 21;">SAP SDK</span>
           <span class="skill-tag skill-sap-b1" style="--tag-index: 22;">SAP B1</span>
           <span class="skill-tag skill-git" style="--tag-index: 23;">Git</span>
@@ -62,8 +76,8 @@
       <div class="profile-pils">
         <span class="pils"><a href="https://www.linkedin.com/in/japhetcarillo/" target="_blank"><i
               class="fa-brands fa-linkedin"></i> LinkedIn</a></span>
-        <span class="pils"><a href="https://stackoverflow.com/users/1080742/spajce"
-            target="_blank"><i class="fa-brands fa-stack-overflow"></i> Stack Overflow</a></span>
+        <span class="pils"><a href="https://stackoverflow.com/users/1080742/spajce" target="_blank"><i
+              class="fa-brands fa-stack-overflow"></i> Stack Overflow</a></span>
         <span class="pils"><a href="https://github.com/spajce" target="_blank"><i class="fa-brands fa-github"></i>
             GitHub</a></span>
         <span class="pils"><a href="./projects/" target="_blank"><i class="fa-solid fa-briefcase"></i>
@@ -113,11 +127,11 @@
 
     emailBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      
+
       navigator.clipboard.writeText(emailAddress).then(() => {
         emailTooltip.textContent = 'Copied!';
         emailTooltip.classList.add('show');
-        
+
         setTimeout(() => {
           emailTooltip.classList.remove('show');
           setTimeout(() => {
@@ -143,14 +157,146 @@
       }
     });
 
-    // Skill tag interactions
+    // Skill tag interactions without hide/flicker
     document.querySelectorAll('.skill-tag').forEach(tag => {
       tag.addEventListener('click', () => {
-        tag.style.animation = 'none';
-        setTimeout(() => {
-          tag.style.animation = '';
-        }, 10);
+        tag.animate(
+          [
+            { transform: 'translateY(0) scale(1)', boxShadow: '0 0 0 rgba(130, 220, 125, 0)' },
+            { transform: 'translateY(-2px) scale(1.08)', boxShadow: '0 0 16px rgba(130, 220, 125, 0.45)' },
+            { transform: 'translateY(0) scale(1)', boxShadow: '0 0 0 rgba(130, 220, 125, 0)' }
+          ],
+          {
+            duration: 260,
+            easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+          }
+        );
       });
+    });
+
+    // Particle background
+    const particleCanvas = document.getElementById('particles-bg');
+    const pCtx = particleCanvas.getContext('2d');
+    function resizeParticles() {
+      particleCanvas.width = window.innerWidth;
+      particleCanvas.height = window.innerHeight;
+    }
+    resizeParticles();
+    window.addEventListener('resize', resizeParticles);
+
+    const pts = Array.from({ length: 55 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.5 + 0.3,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      alpha: Math.random() * 0.3 + 0.05
+    }));
+
+    function drawParticles() {
+      pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+      pts.forEach(p => {
+        pCtx.beginPath();
+        pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        pCtx.fillStyle = `rgba(120, 200, 255, ${p.alpha})`;
+        pCtx.fill();
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > particleCanvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > particleCanvas.height) p.vy *= -1;
+      });
+      pts.forEach((p, i) => {
+        for (let j = i + 1; j < pts.length; j++) {
+          const q = pts[j];
+          const dx = p.x - q.x, dy = p.y - q.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 110) {
+            pCtx.beginPath();
+            pCtx.moveTo(p.x, p.y);
+            pCtx.lineTo(q.x, q.y);
+            pCtx.strokeStyle = `rgba(120, 200, 255, ${0.12 * (1 - dist / 110)})`;
+            pCtx.lineWidth = 0.5;
+            pCtx.stroke();
+          }
+        }
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // Typing animation for profile title
+    const typingTitles = ['Software Developer', 'Full-Stack Developer', '.NET Specialist', 'Web Developer', 'ERP Developer'];
+    let typingIdx = 0;
+    let typingChar = typingTitles[0].length;
+    let typingDelete = true;
+    const titleTextEl = document.querySelector('.title-text');
+
+    function typeNext() {
+      const current = typingTitles[typingIdx];
+      if (!typingDelete) {
+        titleTextEl.textContent = current.slice(0, ++typingChar);
+        if (typingChar === current.length) {
+          typingDelete = true;
+          setTimeout(typeNext, 2800);
+          return;
+        }
+      } else {
+        titleTextEl.textContent = current.slice(0, --typingChar);
+        if (typingChar === 0) {
+          typingDelete = false;
+          typingIdx = (typingIdx + 1) % typingTitles.length;
+        }
+      }
+      setTimeout(typeNext, typingDelete ? 40 : 90);
+    }
+
+    setTimeout(typeNext, 5000);
+
+    // Status badge – cycle through developer statuses
+    const statusBadge = document.getElementById('statusBadge');
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+
+    const statuses = [
+      { label: 'Available', cls: '', dotColor: '#00e87a' },
+      { label: 'Building', cls: 'status-building', dotColor: '#38bdf8' },
+      { label: 'On Break', cls: 'status-break', dotColor: '#fbbf24' },
+      { label: 'Busy', cls: 'status-busy', dotColor: '#f87171' },
+    ];
+    let statusIdx = 0;
+
+    function scrambleText(el, newText) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&?!';
+      let iter = 0;
+      const frames = newText.length * 3;
+      clearInterval(el._scramble);
+      el._scramble = setInterval(() => {
+        el.textContent = newText
+          .split('')
+          .map((ch, i) => i < Math.floor(iter / 3) ? ch : chars[Math.floor(Math.random() * chars.length)])
+          .join('');
+        if (iter++ >= frames) {
+          el.textContent = newText;
+          clearInterval(el._scramble);
+        }
+      }, 28);
+    }
+
+    statusBadge.addEventListener('click', () => {
+      statusIdx = (statusIdx + 1) % statuses.length;
+      const s = statuses[statusIdx];
+
+      // Colour glow flash
+      statusBadge.classList.add('status-flash');
+      statusBadge.addEventListener('animationend', () => statusBadge.classList.remove('status-flash'), { once: true });
+
+      // Swap dot colour + badge class immediately
+      statusDot.style.background = s.dotColor;
+      statusBadge.className = 'status-badge' + (s.cls ? ' ' + s.cls : '');
+      statusBadge.classList.add('status-flash');
+
+      // Scramble text into new label
+      scrambleText(statusText, s.label);
     });
   </script>
 </body>

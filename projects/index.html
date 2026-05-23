@@ -458,6 +458,129 @@
         color: #000 !important;
       }
     }
+
+    /* ===== Stats Row ===== */
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: clamp(0.75rem, 2.5vw, 1.75rem);
+      margin: 1rem 0 3.5rem;
+      flex-wrap: wrap;
+      animation: fade_in 0.8s 0.2s forwards;
+      opacity: 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.25rem 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      min-width: 105px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-normal);
+    }
+
+    .stat-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .stat-item:hover::before { opacity: 0.07; }
+
+    .stat-item:hover {
+      border-color: var(--border-color-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .stat-number-wrap {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-number {
+      font-size: clamp(1.75rem, 5vw, 2.4rem);
+      font-weight: 800;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      display: inline-block;
+    }
+
+    .stat-suffix {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      font-weight: 700;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: clamp(0.65rem, 1.8vw, 0.78rem);
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+
+    /* ===== Featured Badge ===== */
+    .featured-badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      padding: 0.28rem 0.65rem;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.92), rgba(239, 68, 68, 0.85));
+      border-radius: 2rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      z-index: 2;
+      box-shadow: 0 2px 14px rgba(245, 158, 11, 0.45);
+      animation: badgePulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 2px 14px rgba(245, 158, 11, 0.45); }
+      50% { box-shadow: 0 2px 22px rgba(245, 158, 11, 0.75); }
+    }
+
+    /* ===== Unique project image gradients ===== */
+    .project-card:nth-child(1) .project-image {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.35) 0%, rgba(147, 51, 234, 0.25) 100%);
+    }
+    .project-card:nth-child(2) .project-image {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.35) 0%, rgba(239, 68, 68, 0.25) 100%);
+    }
+    .project-card:nth-child(3) .project-image {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.35) 0%, rgba(59, 130, 246, 0.25) 100%);
+    }
+    .project-card:nth-child(4) .project-image {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.35) 0%, rgba(239, 68, 68, 0.25) 100%);
+    }
+    .project-card:nth-child(5) .project-image {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.35) 0%, rgba(139, 92, 246, 0.25) 100%);
+    }
+    .project-card:nth-child(6) .project-image {
+      background: linear-gradient(135deg, rgba(240, 219, 79, 0.35) 0%, rgba(245, 158, 11, 0.25) 100%);
+    }
   </style>
 </head>
 
@@ -473,9 +596,41 @@
       <p>A collection of projects I've worked on</p>
     </header>
 
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-number-wrap">
+          <span class="stat-number" data-target="10">10</span>
+          <span class="stat-suffix">+</span>
+        </div>
+        <span class="stat-label">Years Exp.</span>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number-wrap">
+          <span class="stat-number" data-target="50">50</span>
+          <span class="stat-suffix">+</span>
+        </div>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number-wrap">
+          <span class="stat-number" data-target="20">20</span>
+          <span class="stat-suffix">+</span>
+        </div>
+        <span class="stat-label">Technologies</span>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number-wrap">
+          <span class="stat-number" data-target="100">100</span>
+          <span class="stat-suffix">%</span>
+        </div>
+        <span class="stat-label">Dedicated</span>
+      </div>
+    </div>
+
     <main class="projects-grid">
       <article class="project-card">
         <div class="project-image">
+          <span class="featured-badge"><i class="fa-solid fa-star"></i> Featured</span>
           <i class="fa-solid fa-code project-placeholder"></i>
         </div>
         <div class="project-content">
@@ -649,6 +804,30 @@
       </article>
     </main>
   </div>
+
+  <script>
+    // Animate stat counters on load
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let animated = false;
+
+    function animateCounters() {
+      if (animated) return;
+      animated = true;
+      statNumbers.forEach(el => {
+        const target = parseInt(el.dataset.target);
+        el.textContent = '0';
+        let current = 0;
+        const step = Math.ceil(target / 40);
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = current;
+          if (current >= target) clearInterval(timer);
+        }, 30);
+      });
+    }
+
+    setTimeout(animateCounters, 400);
+  </script>
 </body>
 
 </html>
